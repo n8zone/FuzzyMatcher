@@ -28,6 +28,8 @@ COUNTRIES = [
 
 
 test_cases = [
+        ("gerbmany", "Germany"),
+        ("unted states", "United States"),
         ("slavania", "Slovenia"),
         ("Inia", "India"),
         ("pamama", "Panama"),
@@ -36,7 +38,6 @@ test_cases = [
         ("untied states", "United States of America"),
         ("brazi", "Brazil"),
         ("argentin", "Argentina"),
-        ("gemany", "Germany"),
         ("afghanstan", "Afghanistan"),
         ("japon", "Japan"),
         ("austrila", "Australia"),
