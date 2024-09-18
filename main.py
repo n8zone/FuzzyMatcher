@@ -98,21 +98,24 @@ def main():
 
         while next_instr != "n":
 
-            if next_instr == "vr":
-                cases = [case[1], output]
-                view_log(cases)
+
 
             if next_instr == "s":
                 view_log(["stdout"])
                 input()
 
-            if next_instr != '' and next_instr[0].lower() == 'v':
+            if next_instr == "vr":
+                cases = [case[1], output]
+                view_log(cases)
+                input()
+            elif next_instr != '' and next_instr[0].lower() == 'v':
                 cases = next_instr[2::].split(';')
                 print(cases)
                 view_log(cases)
                 print(
                     f"Changes to {output}: {compare_strings(trying, output)}\nChanges to expected: {compare_strings(case[1], trying)}")
                 input()
+
 
             next_instr = input(
                 "Enter 'vr' to view relevant logs\nEnter 'v' to view specific logs by country\nEnter 's' to view stdout\nEnter 'n' to continue to next case...")
