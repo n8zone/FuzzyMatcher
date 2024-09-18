@@ -3,10 +3,12 @@ I wanted to create a java program that automatically retrieved the currency code
 
 I am satisfied with where I got, and as a FuzzyMatching algorithm it works well, but ultimately I think I was creating the wrong tool for my original 'autocorrect' idea. I thought FuzzyMatching would work at first, but now I realize it is more useful for finding similar strings within a threshold. I would still like to make an autocorrection tool though.
 
-**TODO:**
-- Extract logger logic into a separate repo
 
-## Planned Features
+
+## Future Plans
+
+**TODO:**
+- Extract logger logic into a separate repo to be reused in future algorithm testing
 
 **WIBNI**
 - ~~Proper dataset of common typos to solve 2similar problem.~~
