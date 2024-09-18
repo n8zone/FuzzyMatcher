@@ -26,11 +26,14 @@ COUNTRIES = [
         "Yemen", "Zambia", "Zimbabwe", "Wales", "US Virgin Islands", "Korea", "United States"
     ]
 
+# Slovakia
+# Slovenia
 
 test_cases = [
-        ("gerbmany", "Germany"),
-        ("unted states", "United States"),
         ("slavania", "Slovenia"),
+        ("slovakea", "Slovakia"),
+        ("gerbany", "Germany"),
+        ("unted states", "United States"),
         ("Inia", "India"),
         ("pamama", "Panama"),
         ("wails", "Wales"),

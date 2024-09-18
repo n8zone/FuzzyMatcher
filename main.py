@@ -1,3 +1,5 @@
+import os
+import sys
 from time import perf_counter
 import verbose_logger
 from verbose_logger import create_logger, clear_log, print_log, view_log
@@ -61,7 +63,10 @@ def get_most_similar(entry, known):
     known_copy = known.copy()
     filtered = list(filter(lambda s: abs(len(s) - len(entry)) < MAX_LEN_DIFF, known_copy))
     STDOUT(f"Filtered countries from {len(known)} entries to {len(filtered)} entries\n{filtered}")
-    most_similar = ("ok", 999)
+
+    ##############  str,  num_changes
+    most_similar = ("ok", 9999)
+
     for string in filtered:
         log = create_logger(string)
         changes = compare_strings(s1=string, s2=entry, log=log)
@@ -75,7 +80,9 @@ def get_most_similar(entry, known):
 
 
 
-
+def reset():
+    verbose_logger.clear_log()
+    main()
 
 def main():
     case_number = 1
@@ -103,25 +110,29 @@ def main():
         while next_instr != "n":
 
 
+            if next_instr == "q":
+                print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+                reset()
 
             if next_instr == "s":
                 view_log(["stdout"])
-                input()
+                next_instr = input()
 
             if next_instr == "vr":
                 cases = [case[1], output]
                 view_log(cases)
-                input()
+                next_instr = input()
             elif next_instr != '' and next_instr[0].lower() == 'v':
                 cases = next_instr[2::].split(';')
                 print(cases)
                 view_log(cases)
                 print(
                     f"Changes to {output}: {compare_strings(trying, output)}\nChanges to expected: {compare_strings(case[1], trying)}")
-                input()
+                next_instr = input()
 
 
-            next_instr = input(
+            if next_instr == '':
+                next_instr = input(
                 "Enter 'vr' to view relevant logs\nEnter 'v' to view specific logs by country\nEnter 's' to view stdout\nEnter 'n' to continue to next case...")
 
 
