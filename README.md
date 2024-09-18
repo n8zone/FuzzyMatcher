@@ -7,7 +7,6 @@ I am satisfied with where I got, and as a FuzzyMatching algorithm it works well,
 - Extract logger logic into a separate repo
 
 **Planned Features**
-- 
 
 **WIBNI**
 - ~~Proper dataset of common typos to solve 2similar problem.~~
