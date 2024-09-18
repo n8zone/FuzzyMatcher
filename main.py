@@ -1,5 +1,3 @@
-import os
-import sys
 from time import perf_counter
 import verbose_logger
 from verbose_logger import create_logger, clear_log, print_log, view_log
@@ -63,10 +61,7 @@ def get_most_similar(entry, known):
     known_copy = known.copy()
     filtered = list(filter(lambda s: abs(len(s) - len(entry)) < MAX_LEN_DIFF, known_copy))
     STDOUT(f"Filtered countries from {len(known)} entries to {len(filtered)} entries\n{filtered}")
-
-    ##############  str,  num_changes
-    most_similar = ("ok", 9999)
-
+    most_similar = ("ok", 999)
     for string in filtered:
         log = create_logger(string)
         changes = compare_strings(s1=string, s2=entry, log=log)
@@ -74,9 +69,25 @@ def get_most_similar(entry, known):
         if changes < most_similar[1]:
             STDOUT(f"Changing most_similar from {most_similar} to {(string, changes)}.")
             most_similar = (string, changes)
+            matching = [most_similar]
+
+        elif changes == most_similar[1]:
+            STDOUT(f"Changing most_similar from {most_similar} to {(string, changes)}.")
+            matching_case = (string, changes)
+
+            matching = matching + [matching_case]
+            STDOUT(f"{matching} <<<MATCHING")
+
 
         log(f"Result: {(string, changes)}")
-    return most_similar[0]
+
+    matching_words = []
+    for group in matching:
+        matching_words.append(group[0])
+
+    STDOUT(f"Matching words: {matching_words}")
+
+    return matching_words
 
 
 
@@ -90,6 +101,29 @@ def main():
         trying = case[0]
         start = perf_counter()
         output = get_most_similar(trying, COUNTRIES)
+
+        output_len = len(output)
+
+        if output_len > 1:
+            # handle that
+            print(f"Found {output_len} matching words ({output})!")
+
+            for i in range(output_len):
+                print(f"{i+1}. {output[i]}")
+
+            choice = -1
+
+            while choice - 1 not in range(output_len):
+                try:
+                    choice = int(input("Please enter the digit corresponding to the correct word: "))
+                except:
+                    print("Please enter a valid integer within the range of the list")
+
+
+            output = output[choice - 1]
+        else:
+            output = output[0]
+
         end = perf_counter()
         time_to_execute = (end - start) * 1000
         STDOUT(f"Time to execute: {time_to_execute}ms")
