@@ -56,8 +56,7 @@ def compare_strings(s1, s2, log=STDOUT):
         log(f"{compared_to} is not {char_to_check}, adding one change")
         changes += 1
 
-    steps = i # lazy workaround for changing all instances of i for now
-    return changes, steps
+    return changes
 
 
 def get_most_similar(entry, known):
@@ -71,22 +70,22 @@ def get_most_similar(entry, known):
     matching = []
     for string in filtered:
         log = create_logger(string)
-        changes, steps = compare_strings(s1=string, s2=entry, log=log)
+        changes = compare_strings(s1=string, s2=entry, log=log)
 
         if changes < most_similar[1]:
             STDOUT(f"Changing most_similar from {most_similar} to {(string, changes)}.")
-            most_similar = (string, changes, steps)
+            most_similar = (string, changes)
             matching = [most_similar]
 
         elif changes == most_similar[1]:
-            STDOUT(f"Changing most_similar from {most_similar} to {(string, changes, steps)}.")
-            matching_case = (string, changes, steps)
+            STDOUT(f"Changing most_similar from {most_similar} to {(string, changes)}.")
+            matching_case = (string, changes)
 
             matching = matching + [matching_case]
             STDOUT(f"{matching} <<<MATCHING")
 
 
-        log(f"Result: {(string, changes, steps)}")
+        log(f"Result: {(string, changes)}")
 
     matching_words = []
     for group in matching:
