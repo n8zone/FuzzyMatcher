@@ -7,7 +7,6 @@ STDOUT = create_logger("stdout")
 MAX_LEN_DIFF = 4
 
 # Reconsider using default arg for log, I'd prefer to keep algorithm functions and logger decoupled
-# TODO: Implement proper insertion method, if one letter is missing, we should only need to make one change
 def compare_strings(s1, s2, log=STDOUT):
     changes = 0
     checking_string = s1
@@ -15,11 +14,6 @@ def compare_strings(s1, s2, log=STDOUT):
     s2 = s2.lower()
 
     log(f"Testing {s1} against {s2}")
-
-#    if len(s2) > len(s1):
-#        temp = s1
-#        s1 = s2
-#        s2 = temp
 
     s2_offset = 0 # guh
     for i in range(len(s1)):
@@ -47,6 +41,16 @@ def compare_strings(s1, s2, log=STDOUT):
             # Here I simulate an insertion by telling the s2 pointer to lag
             if should_insert:
                 s2_offset -= 1
+
+
+        elif len(s2) > len(s1):
+            prev_char_exists = (i - 1) >= 0
+            prev_char_is_target = s1[i - 1] == compared_to if prev_char_exists else False
+
+            should_delete = prev_char_exists and prev_char_is_target
+
+            if should_delete:
+                s2_offset += 1
 
         log(f"{compared_to} is not {char_to_check}, adding one change")
         changes += 1
