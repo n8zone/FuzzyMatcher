@@ -1,3 +1,4 @@
+from sys import stdout
 from time import perf_counter
 import verbose_logger
 from verbose_logger import create_logger, clear_log, print_log, view_log
