@@ -2,6 +2,8 @@ verbose_log = ""
 
 log = {}
 
+commands = {}
+
 def clear_log():
     global verbose_log
     global  log
@@ -43,6 +45,16 @@ def print_log(test_case):
         print(f"No associated log for {test_case}\n")
 
 
+
+def control_flow(cmd_key, **kwargs):
+    if cmd_key in commands:
+        commands[cmd_key]()
+    else:
+        return
+
+
+def register_command(func, cmd_key):
+    commands[cmd_key] = func
 
 
 # DEPRECATED
