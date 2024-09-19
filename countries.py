@@ -28,9 +28,9 @@ COUNTRIES = [
 
 
 test_cases = [
+        ("slavania", "Slovenia"),
         ("gerbmany", "Germany"),
         ("unted states", "United States"),
-        ("slavania", "Slovenia"),
         ("Inia", "India"),
         ("pamama", "Panama"),
         ("wails", "Wales"),
