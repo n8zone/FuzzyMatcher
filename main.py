@@ -1,4 +1,3 @@
-from sys import stdout
 from time import perf_counter
 import verbose_logger
 from verbose_logger import create_logger, clear_log, print_log, view_log
@@ -42,6 +41,7 @@ def compare_strings(s1, s2, log=STDOUT):
             # Here I simulate an insertion by telling the s2 pointer to lag
             if should_insert:
                 s2_offset -= 1
+                log("[INSERTION]")
 
 
         elif len(s2) > len(s1):
@@ -52,6 +52,7 @@ def compare_strings(s1, s2, log=STDOUT):
 
             if should_delete:
                 s2_offset += 1
+                log("[DELETION]")
 
         log(f"{compared_to} is not {char_to_check}, adding one change")
         changes += 1
@@ -141,7 +142,7 @@ def main():
 
         next_instr = ""
 
-
+        #TODO: Move logger instruction logic to logger ?
         while next_instr != "n":
 
 
