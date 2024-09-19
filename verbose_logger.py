@@ -2,6 +2,8 @@ verbose_log = ""
 
 log = {}
 
+commands = {}
+
 def clear_log():
     global verbose_log
     global  log
@@ -44,15 +46,12 @@ def print_log(test_case):
 
 
 
+def control_flow(cmd_key, **kwargs):
+    if cmd_key in commands:
+        commands[cmd_key]()
+    else:
+        return
 
-# DEPRECATED
-def append_log(message, test_case):
-    test_case = test_case.lower()
-    global verbose_log
-    global log
-    verbose_log += f"\n{message}"
-    log[test_case] += f"\n{message}"
 
-# Current Issue:
-# I have to manually look through every log to find relevant test cases. If I'm confused why 'Inia' is more similar to 'Cuba' than 'India'...
-# ...I don't care about the log for "US VIRGIN ISLANDS"
+def register_command(func, cmd_key):
+    commands[cmd_key] = func
