@@ -59,7 +59,11 @@ def compare_strings(s1, s2, log=STDOUT):
 
     return changes
 
+
 def get_most_similar(entry, known):
+    if entry.capitalize() in known:
+        return entry.capitalize
+
     known_copy = known.copy()
     filtered = list(filter(lambda s: abs(len(s) - len(entry)) < MAX_LEN_DIFF, known_copy))
     STDOUT(f"Filtered countries from {len(known)} entries to {len(filtered)} entries\n{filtered}")
