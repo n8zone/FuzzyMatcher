@@ -1,12 +1,15 @@
-# A version of the FuzzyMatcher with manual conflict resolution for matching similarity cases
+## **Purpose & Backstory**
+I wanted to create a java program that automatically retrieved the currency code of a country. This was super simple to do, so then I decided to challenge myself to create a simple 'autocorrect' so that the program could attempt to resolve small user errors without simply reprompting them to enter a valid country. The original solution can be found in my MadLib repository [here](https://github.com/n8zone/MadLib). This solution was ugly and used far too many loops for my liking, so I did a small amount of research and found the **Levenshtein Distance Algorithm**. This repository is my attempt at implementing the algorithm without using any references, just a brief description of how its supposed to work.
 
-## Example Case
+I am satisfied with where I got, and as a FuzzyMatching algorithm it works well, but ultimately I think I was creating the wrong tool for my original 'autocorrect' idea. I thought FuzzyMatching would work at first, but now I realize it is more useful for finding similar strings within a threshold. I would still like to make an autocorrection tool though.
 
-```
-Input: slavania
-Expected Output: Slovenia
-Actual Output: Slovakia
-```
-This occurs because both Slovenia and Slovakia are two changes away from slavania, and Slovakia occurs first in the countries list.
 
-I think at this point it becomes less of a distance problem, and I would have to create a dataset of common typos.
+
+## Future Plans
+
+**TODO:**
+- Extract logger logic into a separate repo to be reused in future algorithm testing
+- Analyze time space comlexity
+
+**WIBNI**
+- ~~Proper dataset of common typos to solve 2similar problem.~~
