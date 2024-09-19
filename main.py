@@ -67,7 +67,11 @@ def get_most_similar(entry, known):
     known_copy = known.copy()
     filtered = list(filter(lambda s: abs(len(s) - len(entry)) < MAX_LEN_DIFF, known_copy))
     STDOUT(f"Filtered countries from {len(known)} entries to {len(filtered)} entries\n{filtered}")
-    most_similar = ("ok", 999)
+
+    #               str, changes, steps
+    most_similar = ("ok", 9999, 9999)
+
+    matching = []
     for string in filtered:
         log = create_logger(string)
         changes = compare_strings(s1=string, s2=entry, log=log)
