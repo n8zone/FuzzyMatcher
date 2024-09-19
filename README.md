@@ -9,6 +9,7 @@ I am satisfied with where I got, and as a FuzzyMatching algorithm it works well,
 
 **TODO:**
 - Extract logger logic into a separate repo to be reused in future algorithm testing
+- Analyze time space comlexity
 
 **WIBNI**
 - ~~Proper dataset of common typos to solve 2similar problem.~~
